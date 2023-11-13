@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unittest Results</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="text-capitalize">Unittest Results</h2>
+                <p class='attribute'><strong>Start Time: </strong>2023-11-09 19:07:03</p>
+                <p class='attribute'><strong>Duration: </strong>26.58 s</p>
+                <p class='attribute'><strong>Summary: </strong>Total: 2, Pass: 1, Error: 1</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-10">
+                <table class='table table-hover table-responsive'>
+                    <thead>
+                        <tr>
+                            <th>__main__.ChromeSearch</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class='success'>
+                            <td class="col-xs-10">test_chrome</td>
+                            <td class="col-xs-1">
+                                <span class="label label-success" style="display:block;width:40px;">Pass</span>
+                            </td>
+                            <td class="col-xs-1">
+                                <button class="btn btn-default btn-xs">View</button>
+                            </td>
+                        </tr>
+                        <tr style="display:none;">
+                            <td class="col-xs-9" colspan="3"><p>Wikipedia
+Page has  Carpet - Wikipedia as Page title
+Page has Ardabil Carpet - Carpet - Wikipedia as Page title
+Azerbaijan Carpet history
+</p>
+                            </td>
+                        </tr>
+                        <tr class='warning'>
+                            <td class="col-xs-10">test_chrome_1120x850</td>
+                            <td class="col-xs-1">
+                                <span class="label label-warning" style="display:block;width:40px;">Error</span>
+                            </td>
+                            <td class="col-xs-1">
+                                <button class="btn btn-default btn-xs">View</button>
+                            </td>
+                        </tr>
+                        <tr style="display:none;">
+                            <td class="col-xs-9" colspan="3"><p>Wikipedia
+</p><p style="color:maroon;">ElementClickInterceptedException: Message: element click intercepted: Element <input id="searchInput" name="search" type="search" size="20" autofocus="autofocus" accesskey="F" dir="auto" autocomplete="off" style="padding-right: 64px;"> is not clickable at point (517, 494). Other element would receive the click: <div class="portal-banner-content-message">...</div>
+  (Session info: chrome=119.0.6045.106)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6E6E182B2+55298]
+	(No symbol) [0x00007FF6E6D85E02]
+	(No symbol) [0x00007FF6E6C405AB]
+	(No symbol) [0x00007FF6E6C87A77]
+	(No symbol) [0x00007FF6E6C85E39]
+	(No symbol) [0x00007FF6E6C83C08]
+	(No symbol) [0x00007FF6E6C82C8A]
+	(No symbol) [0x00007FF6E6C787BF]
+	(No symbol) [0x00007FF6E6CA20AA]
+	(No symbol) [0x00007FF6E6C780CF]
+	(No symbol) [0x00007FF6E6CA22C0]
+	(No symbol) [0x00007FF6E6CBAAA4]
+	(No symbol) [0x00007FF6E6CA1E83]
+	(No symbol) [0x00007FF6E6C7670A]
+	(No symbol) [0x00007FF6E6C77964]
+	GetHandleVerifier [0x00007FF6E7190AAB+3694587]
+	GetHandleVerifier [0x00007FF6E71E728E+4048862]
+	GetHandleVerifier [0x00007FF6E71DF173+4015811]
+	GetHandleVerifier [0x00007FF6E6EB47D6+695590]
+	(No symbol) [0x00007FF6E6D90CE8]
+	(No symbol) [0x00007FF6E6D8CF34]
+	(No symbol) [0x00007FF6E6D8D062]
+	(No symbol) [0x00007FF6E6D7D3A3]
+	BaseThreadInitThunk [0x00007FFF5AE5257D+29]
+	RtlUserThreadStart [0x00007FFF5C28AA78+40]
+</p><p style="color:maroon;">Traceback (most recent call last):
+  File "C:\Users\Allen\PycharmProjects\Test111\HTML and Allure\Unittest_HTML_Reports_Wikipedia.py", line 95, in test_chrome_1120x850
+    driver.find_element(By.ID, 'searchInput').click()
+  File "C:\Users\Allen\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 94, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Users\Allen\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\remote\webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Allen\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 345, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\Allen\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <input id="searchInput" name="search" type="search" size="20" autofocus="autofocus" accesskey="F" dir="auto" autocomplete="off" style="padding-right: 64px;"> is not clickable at point (517, 494). Other element would receive the click: <div class="portal-banner-content-message">...</div>
+  (Session info: chrome=119.0.6045.106)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6E6E182B2+55298]
+	(No symbol) [0x00007FF6E6D85E02]
+	(No symbol) [0x00007FF6E6C405AB]
+	(No symbol) [0x00007FF6E6C87A77]
+	(No symbol) [0x00007FF6E6C85E39]
+	(No symbol) [0x00007FF6E6C83C08]
+	(No symbol) [0x00007FF6E6C82C8A]
+	(No symbol) [0x00007FF6E6C787BF]
+	(No symbol) [0x00007FF6E6CA20AA]
+	(No symbol) [0x00007FF6E6C780CF]
+	(No symbol) [0x00007FF6E6CA22C0]
+	(No symbol) [0x00007FF6E6CBAAA4]
+	(No symbol) [0x00007FF6E6CA1E83]
+	(No symbol) [0x00007FF6E6C7670A]
+	(No symbol) [0x00007FF6E6C77964]
+	GetHandleVerifier [0x00007FF6E7190AAB+3694587]
+	GetHandleVerifier [0x00007FF6E71E728E+4048862]
+	GetHandleVerifier [0x00007FF6E71DF173+4015811]
+	GetHandleVerifier [0x00007FF6E6EB47D6+695590]
+	(No symbol) [0x00007FF6E6D90CE8]
+	(No symbol) [0x00007FF6E6D8CF34]
+	(No symbol) [0x00007FF6E6D8D062]
+	(No symbol) [0x00007FF6E6D7D3A3]
+	BaseThreadInitThunk [0x00007FFF5AE5257D+29]
+	RtlUserThreadStart [0x00007FFF5C28AA78+40]
+
+</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                Total: 2, Pass: 1, Error: 1 -- Duration: 26.58 s
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('td').on('click', '.btn', function(e){
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                var $this = $(this);
+                var $nextRow = $this.closest('tr').next('tr');
+                $nextRow.slideToggle("fast");
+                $this.text(function(i, text){
+                    if (text === 'View') {
+                        return 'Hide';
+                    } else {
+                        return 'View';
+                    };
+                });
+            });
+        });
+    </script>
+</body>
+</html

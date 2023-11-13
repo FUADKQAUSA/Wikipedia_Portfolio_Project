@@ -1,0 +1,396 @@
+{
+	"info": {
+		"_postman_id": "a8616d5d-49be-438c-b16b-8a8659c86c87",
+		"name": "NASA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29356492"
+	},
+	"item": [
+		{
+			"name": "My-Key",
+			"item": [
+				{
+					"name": "APOD",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.all.keys('copyright', 'date', 'explanation', 'hdurl', 'media_type', 'service_version', 'title', 'url');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Date is in a valid date format\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.date).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"hdurl and url are valid URLs\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.hdurl).to.match(/^https?:\\/\\/[^\\s/$.?#].[^\\s]*$/);\r",
+									"    pm.expect(responseData.url).to.match(/^https?:\\/\\/[^\\s/$.?#].[^\\s]*$/);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Media type is either 'image' or 'video'\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.media_type).to.be.oneOf(['image', 'video'], \"Media type should be either 'image' or 'video'\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The 'copyright' field is a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('copyright').that.is.a('string').and.is.not.empty;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Title field is a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title field should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Explanation field is a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.explanation).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"The service_version field is a non-empty string\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.service_version).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Date field is in the past\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.date).to.exist;\r",
+									"    pm.expect(new Date(responseData.date)).to.be.below(new Date());\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.nasa.gov/planetary/apod?api_key={{api_key}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"nasa",
+								"gov"
+							],
+							"path": [
+								"planetary",
+								"apod"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "{{api_key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Asteroid - NeoWs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"The 'links' object is present in the response\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.links).to.exist.and.to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify the presence of the 'page' object and its expected fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.page).to.exist.and.to.be.an('object');\r",
+									"    pm.expect(responseData.page).to.have.property('size');\r",
+									"    pm.expect(responseData.page).to.have.property('total_elements');\r",
+									"    pm.expect(responseData.page).to.have.property('total_pages');\r",
+									"    pm.expect(responseData.page).to.have.property('number');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Near Earth Objects array is present and contains at least one element\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.near_earth_objects).to.exist.and.to.be.an('array').with.lengthOf.at.least(1);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify the presence of the 'links' object and its expected fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.links).to.exist.and.to.be.an('object');\r",
+									"    pm.expect(responseData.links.next).to.exist.and.to.be.a('string');\r",
+									"    pm.expect(responseData.links.self).to.exist.and.to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify that the 'close_approach_data' array is present and contains at least one element\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.near_earth_objects).to.exist.and.to.be.an('array');\r",
+									"    responseData.near_earth_objects.forEach(function (neo) {\r",
+									"        pm.expect(neo.close_approach_data).to.exist.and.to.be.an('array').and.to.have.lengthOf.at.least(1);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 4000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(4000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response size is less than 20000B\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(20000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+									"    pm.response.to.have.header(\"Transfer-Encoding\", \"chunked\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.nasa.gov/neo/rest/v1/neo/browse?api_key={{api_key}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"nasa",
+								"gov"
+							],
+							"path": [
+								"neo",
+								"rest",
+								"v1",
+								"neo",
+								"browse"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "{{api_key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mars Rover Photos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the photos array\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.photos).to.exist.and.to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify id is a non-negative integer\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.photos).to.be.an('array');\r",
+									"    responseData.photos.forEach(function (photo) {\r",
+									"        pm.expect(photo.id).to.be.a('number');\r",
+									"        pm.expect(photo.id).to.be.at.least(0);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify id is a non-negative integer\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.photos).to.be.an('array');\r",
+									"    responseData.photos.forEach(function (photo) {\r",
+									"        pm.expect(photo.id).to.be.a('number');\r",
+									"        pm.expect(photo.id).to.be.at.least(0, \"Value should be a non-negative integer\");\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"The id should be a non-negative integer\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.photos).to.be.an('array');\r",
+									"\r",
+									"    responseData.photos.forEach(function (photo) {\r",
+									"        pm.expect(photo.id).to.be.a('number').and.to.be.at.least(0, \"Value should be a non-negative integer\");\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"sol is a non-negative integer\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.photos).to.be.an('array');\r",
+									"    responseData.photos.forEach(function (photo) {\r",
+									"        pm.expect(photo.sol).to.be.a('number');\r",
+									"        pm.expect(photo.sol).to.be.at.least(0);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Camera has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    const cameras = responseData.photos[0].camera;\r",
+									"\r",
+									"    pm.expect(cameras).to.be.an('object');\r",
+									"    pm.expect(cameras).to.have.property('id');\r",
+									"    pm.expect(cameras).to.have.property('name');\r",
+									"    pm.expect(cameras).to.have.property('rover_id');\r",
+									"    pm.expect(cameras).to.have.property('full_name');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response size is less than 5KB\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(5040);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"    pm.response.to.have.header(\"Transfer-Encoding\", \"chunked\");\r",
+									"    pm.response.to.have.header(\"Access-Control-Allow-Origin\", \"*\");\r",
+									"    pm.response.to.have.header(\"Via\", \"1.1 vegur, http/1.1 api-umbrella (ApacheTrafficServer [cMsSf ])\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key={{api_key}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"nasa",
+								"gov"
+							],
+							"path": [
+								"mars-photos",
+								"api",
+								"v1",
+								"rovers",
+								"curiosity",
+								"photos"
+							],
+							"query": [
+								{
+									"key": "earth_date",
+									"value": "2015-6-3"
+								},
+								{
+									"key": "api_key",
+									"value": "{{api_key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "a8ScguEVwAAbosVaLubmceds6OkFRR1Ak769wR3P",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

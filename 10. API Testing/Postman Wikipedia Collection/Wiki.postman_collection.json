@@ -1,0 +1,595 @@
+{
+	"info": {
+		"_postman_id": "695b55dc-e723-4015-b3bf-cb5594501bf6",
+		"name": "Wiki",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29356492"
+	},
+	"item": [
+		{
+			"name": "Carpet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Entire response is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.type).to.eql(\"disambiguation\");\r",
+							"    pm.expect(jsonData.title).to.eql(\"Carpet (disambiguation)\");\r",
+							"    pm.expect(jsonData.displaytitle).to.eql(\"<span class=\\\"mw-page-title-main\\\">Carpet (disambiguation)</span>\");\r",
+							"    pm.expect(jsonData.namespace.id).to.eql(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response Body has correct Keys\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"type\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"displaytitle\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"namespace\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"wikibase_item\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"titles\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response size is less than 20000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(5000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Header is present\", function () {\r",
+							"    pm.response.to.have.header(\"content-language\", \"en\");\r",
+							"    pm.response.to.have.header(\"cache-control\", \"s-maxage=1209600, max-age=300\");\r",
+							"    pm.response.to.have.header(\"vary\", \"Accept-Encoding\");\r",
+							"    pm.response.to.have.header(\"content-location\", \"https://en.wikipedia.org/api/rest_v1/page/summary/Carpet_(disambiguation)\");\r",
+							"    pm.response.to.have.header(\"access-control-allow-methods\", \"GET,HEAD\");\r",
+							"    pm.response.to.have.header(\"x-frame-options\", \"SAMEORIGIN\");\r",
+							"    pm.response.to.have.header(\"referrer-policy\", \"origin-when-cross-origin\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response shoul be Ok to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body should be in the correct format\", function() {\r",
+							"    let jsonResponse = pm.response.json();\r",
+							"    pm.expect(jsonResponse.type).to.be.a('string');\r",
+							"    pm.expect(jsonResponse.title).to.be.a('string');\r",
+							"    pm.expect(jsonResponse.displaytitle).to.be.a('string');\r",
+							"    pm.expect(jsonResponse.wikibase_item).to.be.a('string');\r",
+							"    pm.expect(jsonResponse.pageid).to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has a non-empty type field\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.type).to.exist.and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Title is a non-empty string\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Display title is in the correct format\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.displaytitle).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Namespace ID is a non-negative integer\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData.namespace.id).to.be.a('number');\r",
+							"  pm.expect(responseData.namespace.id).to.be.at.least(0);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://en.wikipedia.org/api/rest_v1/page/summary/Carpet_(disambiguation)",
+					"protocol": "https",
+					"host": [
+						"en",
+						"wikipedia",
+						"org"
+					],
+					"path": [
+						"api",
+						"rest_v1",
+						"page",
+						"summary",
+						"Carpet_(disambiguation)"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ardabil Carpet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response size is less than 5000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(5000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 10000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Entire response is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.batchcomplete).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response Body has correct Keys\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"batchcomplete\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"query\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"repos\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Header is present\", function () {\r",
+							"    pm.response.to.have.header(\"x-content-type-options\", \"nosniff\");\r",
+							"    pm.response.to.have.header(\"x-frame-options\", \"DENY\");\r",
+							"    pm.response.to.have.header(\"content-disposition\", \"inline; filename=api-result.json\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response shoul be Ok to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body should be in the correct format\", function() {\r",
+							"    let jsonResponse = pm.response.json();\r",
+							"    pm.expect(jsonResponse.batchcomplete).to.be.a('boolean');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate 'batchcomplete' field is a boolean\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.batchcomplete).to.be.a('boolean');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate that the 'name' field in the 'repos' array is a non-empty string\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    pm.expect(responseData.query.repos).to.be.an('array').that.is.not.empty;\r",
+							"    \r",
+							"    responseData.query.repos.forEach(function(repo) {\r",
+							"        pm.expect(repo.name).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+							"        pm.expect(repo.displayname).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate 'name' field in 'repos' array\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.query.repos).to.be.an('array');\r",
+							"    \r",
+							"    responseData.query.repos.forEach(function(repo) {\r",
+							"        pm.expect(repo.name).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate that the 'rootUrl' field in the 'repos' array is a non-empty string\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseData.query.repos).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Array should not be empty\");\r",
+							"\r",
+							"    responseData.query.repos.forEach(function(repo) {\r",
+							"        pm.expect(repo.rootUrl).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate that the 'batchcomplete' field is a boolean value\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.batchcomplete).to.exist.and.to.be.a('boolean');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Verify that the 'query' object is present in the response\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('object');\r",
+							"  pm.expect(responseData.query).to.exist;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Verify that the 'displayname' field in the 'repos' array is a non-empty string\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.query.repos).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Array should not be empty\");\r",
+							"    \r",
+							"    responseData.query.repos.forEach(function(repo) {\r",
+							"        pm.expect(repo.displayname).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"The 'rootUrl' field in the 'repos' array is a non-empty string\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('object');\r",
+							"  pm.expect(responseData.query.repos).to.be.an('array').and.to.have.lengthOf.at.least(1);\r",
+							"  \r",
+							"  responseData.query.repos.forEach(function(repo) {\r",
+							"    pm.expect(repo.rootUrl).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+							"  });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&meta=filerepoinfo&uselang=content&smaxage=86400&maxage=86400",
+					"protocol": "https",
+					"host": [
+						"en",
+						"wikipedia",
+						"org"
+					],
+					"path": [
+						"w",
+						"api.php"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "query"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "formatversion",
+							"value": "2"
+						},
+						{
+							"key": "meta",
+							"value": "filerepoinfo"
+						},
+						{
+							"key": "uselang",
+							"value": "content"
+						},
+						{
+							"key": "smaxage",
+							"value": "86400"
+						},
+						{
+							"key": "maxage",
+							"value": "86400"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Log-in",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is an object with batchcomplete and query properties\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an('object').that.has.all.keys('batchcomplete', 'query');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response query property is an object with tokens property\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.query).to.be.an('object').that.has.property('tokens');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response tokens property is an object with logintoken property\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.query.tokens).to.be.an('object').that.has.property('logintoken');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.batchcomplete).to.exist;\r",
+							"    pm.expect(responseData.query).to.exist;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"logintoken is a non-empty string\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.query.tokens.logintoken).to.be.a('string').and.to.have.lengthOf.at.least(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is in an acceptable range\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that logintoken is a valid token format\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response JSON structure\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.batchcomplete).to.exist;\r",
+							"    pm.expect(responseData.query).to.exist.and.to.be.an('object');\r",
+							"    pm.expect(responseData.query.tokens).to.exist.and.to.be.an('object');\r",
+							"    pm.expect(responseData.query.tokens.logintoken).to.exist;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that the response has the required headers\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"x-frame-options\")).to.exist;\r",
+							"    pm.expect(pm.response.headers.get(\"content-disposition\")).to.exist;\r",
+							"    pm.expect(pm.response.headers.get(\"cache-control\")).to.exist;\r",
+							"    pm.expect(pm.response.headers.get(\"vary\")).to.exist;\r",
+							"    pm.expect(pm.response.headers.get(\"x-cache-status\")).to.exist;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that the 'batchcomplete' property is a non-empty string\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.batchcomplete).to.be.a('string').and.to.have.lengthOf.at.least(0, \"Value should not be empty\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that the 'logintoken' property is a non-empty string\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.query.tokens.logintoken).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify response JSON structure\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.batchcomplete).to.exist.and.to.be.a('string');\r",
+							"    pm.expect(responseData.query).to.exist.and.to.be.an('object');\r",
+							"    pm.expect(responseData.query.tokens).to.exist.and.to.be.an('object');\r",
+							"    pm.expect(responseData.query.tokens.logintoken).to.exist.and.to.be.a('string');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"login\",\r\n    \"format\": \"json\",\r\n    \"lgname\": \"LM2026\",\r\n    \"lgpassword\": \"carpet123\",\r\n    \"lgtoken\": \"aaf45ac90030a00e6d738e9ae04c7afb652f3cee+\\\\\",\r\n    \"formatversion\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://en.wikipedia.org/w/api.php?action=query&meta=tokens&type=login&format=json",
+					"protocol": "https",
+					"host": [
+						"en",
+						"wikipedia",
+						"org"
+					],
+					"path": [
+						"w",
+						"api.php"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "query"
+						},
+						{
+							"key": "meta",
+							"value": "tokens"
+						},
+						{
+							"key": "type",
+							"value": "login"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all pages with \"Carpet\" word",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate the 'batchcomplete' field is present in the response\", function () {\r",
+							"  pm.expect(pm.response.json()).to.have.property('batchcomplete');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate 'sroffset' and 'continue' fields are present in the 'continue' object\", function () {\r",
+							"    pm.expect(pm.response.json().continue).to.have.property('sroffset').that.is.a('number');\r",
+							"    pm.expect(pm.response.json().continue).to.have.property('continue').that.is.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that the 'search' array is present and not empty\", function () {\r",
+							"    pm.expect(pm.response.json().query).to.have.property('search').that.is.an('array').and.to.have.lengthOf.at.least(1, \"'search' array should not be empty\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate that the 'totalhits' field is a non-negative integer\", function () {\r",
+							"    pm.expect(pm.response.json().query.searchinfo.totalhits).to.be.a('number').and.to.be.at.least(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is an object with 'batchcomplete', 'continue', and 'query' properties\", function () {\r",
+							"    var response = pm.response.json();\r",
+							"    pm.expect(response).to.be.an('object').that.has.all.keys('batchcomplete', 'continue', 'query');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"'batchcomplete' field is present in the response\", function () {\r",
+							"    var response = pm.response.json();\r",
+							"    pm.expect(response).to.have.property('batchcomplete');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"'sroffset' and 'continue' fields are present in the 'continue' object\", function () {\r",
+							"    var continueObj = pm.response.json().continue;\r",
+							"    pm.expect(continueObj).to.have.property('sroffset').that.is.a('number');\r",
+							"    pm.expect(continueObj).to.have.property('continue').that.is.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"'totalhits' field is a non-negative integer\", function () {\r",
+							"    var totalHits = pm.response.json().query.searchinfo.totalhits;\r",
+							"    pm.expect(totalHits).to.be.a('number').and.to.be.at.least(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has required fields\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.have.property(\"batchcomplete\");\r",
+							"  pm.expect(responseData).to.have.property(\"continue\");\r",
+							"  pm.expect(responseData).to.have.property(\"query\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The 'batchcomplete' field is present in the response\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.batchcomplete).to.exist;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Test 'sroffset' and 'continue' fields are present in the 'continue' object\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.continue).to.exist.and.to.be.an('object');\r",
+							"    pm.expect(responseData.continue).to.have.property('sroffset');\r",
+							"    pm.expect(responseData.continue).to.have.property('continue');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"totalhits field is a non-negative integer\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.query.searchinfo.totalhits).to.be.a('number');\r",
+							"    pm.expect(responseData.query.searchinfo.totalhits).to.be.at.least(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Carpet&format=json",
+					"protocol": "https",
+					"host": [
+						"en",
+						"wikipedia",
+						"org"
+					],
+					"path": [
+						"w",
+						"api.php"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "query"
+						},
+						{
+							"key": "list",
+							"value": "search"
+						},
+						{
+							"key": "srsearch",
+							"value": "Carpet"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
